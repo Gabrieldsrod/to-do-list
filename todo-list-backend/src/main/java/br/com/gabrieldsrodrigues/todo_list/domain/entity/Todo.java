@@ -2,7 +2,6 @@ package br.com.gabrieldsrodrigues.todo_list.domain.entity;
 
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoPriority;
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoStatus;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 @Entity
