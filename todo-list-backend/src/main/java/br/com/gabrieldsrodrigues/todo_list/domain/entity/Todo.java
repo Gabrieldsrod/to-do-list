@@ -23,7 +23,6 @@ public class Todo {
     @Enumerated(EnumType.STRING)
     private TodoPriority priority;
 
-    @Column(name = "priority_weight")
     private int priorityWeight;
 
     public Long getId() {
