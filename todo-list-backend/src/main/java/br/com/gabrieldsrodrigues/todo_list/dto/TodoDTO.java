@@ -1,8 +1,9 @@
 package br.com.gabrieldsrodrigues.todo_list.dto;
 
+import br.com.gabrieldsrodrigues.todo_list.domain.entity.TodoEntity;
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoPriority;
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoStatus;
-import jakarta.persistence.*;
+import org.springframework.beans.BeanUtils;
 
 public class TodoDTO {
 
@@ -11,18 +12,12 @@ public class TodoDTO {
     private String description;
     private TodoStatus status;
     private TodoPriority priority;
-    private int priorityWeight;
 
     public TodoDTO() {
     }
 
-    public TodoDTO(Long id, String title, String description, TodoStatus status, TodoPriority priority, int priorityWeight) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = status;
-        this.priority = priority;
-        this.priorityWeight = priorityWeight;
+    public TodoDTO(TodoEntity todo) {
+        BeanUtils.copyProperties(todo, this);
     }
 
     public Long getId() {
@@ -61,12 +56,4 @@ public class TodoDTO {
         return priority;
     }
 
-    public void setPriority(TodoPriority priority) {
-        this.priority = priority;
-        this.priorityWeight = priority.getWeight();
-    }
-
-    public int getPriorityWeight() {
-        return priorityWeight;
-    }
 }

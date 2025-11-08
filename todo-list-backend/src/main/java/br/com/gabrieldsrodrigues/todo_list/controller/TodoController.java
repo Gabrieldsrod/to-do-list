@@ -1,6 +1,7 @@
 package br.com.gabrieldsrodrigues.todo_list.controller;
 
-import br.com.gabrieldsrodrigues.todo_list.domain.entity.Todo;
+import br.com.gabrieldsrodrigues.todo_list.domain.entity.TodoEntity;
+import br.com.gabrieldsrodrigues.todo_list.dto.TodoDTO;
 import br.com.gabrieldsrodrigues.todo_list.service.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -17,22 +18,22 @@ public class TodoController {
     }
 
     @PostMapping
-    List<Todo> create(@RequestBody @Valid Todo todo) {
+    List<TodoDTO> create(@RequestBody @Valid TodoDTO todo) {
         return todoService.create(todo);
     }
 
     @GetMapping
-    List<Todo> list() {
+    List<TodoDTO> list() {
         return todoService.list();
     }
 
     @PutMapping
-    List<Todo> update(@RequestBody Todo todo) {
+    List<TodoDTO> update(@RequestBody TodoDTO todo) {
         return todoService.update(todo);
     }
 
     @DeleteMapping("{id}")
-    List<Todo> delete(@PathVariable("id") Long id) {
+    List<TodoDTO> delete(@PathVariable("id") Long id) {
         return todoService.delete(id);
     }
 }

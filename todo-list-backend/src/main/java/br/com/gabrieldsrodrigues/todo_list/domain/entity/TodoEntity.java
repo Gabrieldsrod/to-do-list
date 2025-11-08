@@ -2,14 +2,14 @@ package br.com.gabrieldsrodrigues.todo_list.domain.entity;
 
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoPriority;
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoStatus;
+import br.com.gabrieldsrodrigues.todo_list.dto.TodoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-
-import java.util.Objects;
+import org.springframework.beans.BeanUtils;
 
 @Entity
 @Table(name = "todos")
-public class Todo {
+public class TodoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,14 +28,18 @@ public class Todo {
     @Column(nullable = false)
     private TodoPriority priority;
 
-    public Todo() {
+    public TodoEntity() {
     }
 
-    public Todo(String title, String description, TodoStatus status, TodoPriority priority) {
+    public TodoEntity(String title, String description, TodoStatus status, TodoPriority priority) {
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
+    }
+
+    public TodoEntity(TodoDTO todo) {
+        BeanUtils.copyProperties(todo, this);
     }
 
     public Long getId() {

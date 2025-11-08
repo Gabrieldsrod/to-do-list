@@ -1,6 +1,6 @@
 package br.com.gabrieldsrodrigues.todo_list;
 
-import br.com.gabrieldsrodrigues.todo_list.domain.entity.Todo;
+import br.com.gabrieldsrodrigues.todo_list.domain.entity.TodoEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,13 +11,13 @@ import static br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoPriority.MEDI
 import static br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoStatus.ONGOING;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class TodoListApplicationTests {
+class TodoEntityListApplicationTests {
 	@Autowired
 	private WebTestClient webTestClient;
 
 	@Test
 	void testCreateTodoSuccess() {
-		var todo = new Todo("todo 1", "desc todo 1", ONGOING, MEDIUM);
+		var todo = new TodoEntity("todo 1", "desc todo 1", ONGOING, MEDIUM);
 
 		webTestClient
 				.post()
@@ -41,7 +41,7 @@ class TodoListApplicationTests {
 				.post()
 				.uri("/todos")
 				.bodyValue(
-						new Todo("", "", null, null)
+						new TodoEntity("", "", null, null)
 				).exchange()
 				.expectStatus().isBadRequest();
 
