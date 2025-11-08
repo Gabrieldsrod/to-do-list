@@ -1,41 +1,28 @@
-package br.com.gabrieldsrodrigues.todo_list.domain.entity;
+package br.com.gabrieldsrodrigues.todo_list.dto;
 
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoPriority;
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 
-import java.util.Objects;
+public class TodoDTO {
 
-@Entity
-@Table(name = "todos")
-public class Todo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    @NotBlank
     private String title;
     private String description;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private TodoStatus status;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private TodoPriority priority;
+    private int priorityWeight;
 
-    public Todo() {
+    public TodoDTO() {
     }
 
-    public Todo(String title, String description, TodoStatus status, TodoPriority priority) {
+    public TodoDTO(Long id, String title, String description, TodoStatus status, TodoPriority priority, int priorityWeight) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
+        this.priorityWeight = priorityWeight;
     }
 
     public Long getId() {
@@ -72,5 +59,14 @@ public class Todo {
 
     public TodoPriority getPriority() {
         return priority;
+    }
+
+    public void setPriority(TodoPriority priority) {
+        this.priority = priority;
+        this.priorityWeight = priority.getWeight();
+    }
+
+    public int getPriorityWeight() {
+        return priorityWeight;
     }
 }
