@@ -1,8 +1,96 @@
 .todo-card {
+    width: 400px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
+    padding: 12px;
     margin: 8px;
     background-color: #f9f9f9;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    border-width: 4px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.todo-card.priority-low {
+    border-color: #2ecc71;
+}
+.todo-card.priority-medium {
+    border-color: #f39c12;
+}
+.todo-card.priority-high {
+    border-color: #e74c3c; 
+
+}
+
+p, h2 {
+    color: #555;
+}
+
+p {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.75em;
+}
+
+label {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 1.25rem;
+}
+.status-label {
+    font-weight: 600;
+    color: #333;
+}
+.status-text {
+    padding: 4px 6px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid transparent;
+    color: #333;
+}
+
+.buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+button {
+    transition: opacity 0.5s ease;
+}
+button:hover {
+    opacity: 0.8;
+}
+button.delete {
+    background-color: #ff1900; 
+}
+button.finish {
+    background-color: #027c12; 
 }

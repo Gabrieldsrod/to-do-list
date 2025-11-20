@@ -1,23 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import type { TodoData } from './../interface/TodoData';
-import axios, { type AxiosPromise } from "axios";
+import axios from "axios";
 
 const API_URL = "http://localhost:8080";
 
-export const fetchData = async (): AxiosPromise<TodoData[]> => {
-    const response = await axios.get(API_URL + '/todos');
-    return response;
+export const fetchData = async (): Promise<TodoData[]> => {
+    const response = await axios.get<TodoData[]>(`${API_URL}/todos`);
+    return response.data;
 }
 
 export function useTodoData() {
-    const query = useQuery({
-        queryFn: fetchData,
+    const query = useQuery<TodoData[]>({
         queryKey: ['todoData'],
+        queryFn: fetchData,
         retry: 2
     });
 
-    return {
-        ...query,
-        data: query.data?.data
-    };
+    return query;
 }

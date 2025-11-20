@@ -1,6 +1,7 @@
 export interface TodoData {
+    id: number;
     title: string;
     description: string;
-    todoStatus: string;
-    todoPriority: number;
+    status: string;
+    priority : string;
 }
