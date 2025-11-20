@@ -5,6 +5,8 @@ import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoPriority;
 import br.com.gabrieldsrodrigues.todo_list.domain.enums.TodoStatus;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Objects;
+
 public class TodoDTO {
 
     private Long id;
@@ -56,4 +58,19 @@ public class TodoDTO {
         return priority;
     }
 
+    public void setPriority(TodoPriority priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoDTO todoDTO = (TodoDTO) o;
+        return Objects.equals(id, todoDTO.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

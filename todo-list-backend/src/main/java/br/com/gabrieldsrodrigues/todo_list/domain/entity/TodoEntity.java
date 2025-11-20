@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "todos")
 public class TodoEntity {
@@ -76,5 +78,21 @@ public class TodoEntity {
 
     public TodoPriority getPriority() {
         return priority;
+    }
+
+    public void setPriority(TodoPriority priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoEntity that = (TodoEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
